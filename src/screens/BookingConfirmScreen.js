@@ -53,14 +53,14 @@ export default function BookingConfirmScreen({ route, navigation }) {
         const [day, month, year] = showtime.date.split('/');
         const [hour, minute] = showtime.time.split(':');
         const showtimeDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
-        const reminderDate = new Date(showtimeDate.getTime() - 30 * 60 * 1000);
+        const reminderDate = new Date(showtimeDate.getTime() - 60 * 60 * 1000);
         const msUntilReminder = reminderDate.getTime() - Date.now();
 
         if (msUntilReminder > 0) {
           setTimeout(() => {
             showNotification(
               '⏰ Còn 30 phút nữa là đến giờ chiếu!',
-              `${movie.title} • ${showtime.time} tại ${showtime.theaterName}`
+              `${movie.title} • ${showtime.time} tại ${showtime.theaterName}. Còn 1 tiếng nữa!`
             );
           }, msUntilReminder);
         }
